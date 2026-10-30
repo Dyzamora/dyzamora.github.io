@@ -1,0 +1,41 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex"><title>Gefunden: Bello</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;600&display=swap">
+<style>
+:root{--grund:#fff8ef;--text:#2c241c;--leise:#7a6a58;--gruen:#1f8a4c;--blau:#1f5fbf;--rot:#b3262e;--display:"Young Serif",Georgia,serif;--sans:"Figtree",system-ui,sans-serif}
+html,body{min-height:100%}body{margin:0;background:var(--grund);color:var(--text);font-family:var(--sans);display:flex;flex-direction:column;align-items:center;
+ padding:0 max(16px,env(safe-area-inset-left,0px)) 24px}
+.pfote{font-size:56px;margin-top:26px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(1.8rem,7vw,2.5rem);margin:6px 0 4px;text-align:center;text-wrap:balance}
+p{margin:6px 0;text-align:center;max-width:30rem;line-height:1.5}
+.hinweis{background:#fdecc8;border-radius:12px;padding:12px 16px;margin:14px 0 4px;font-weight:600;max-width:30rem;text-align:center}
+.knopf{display:block;width:min(100%,380px);box-sizing:border-box;text-align:center;text-decoration:none;color:#fff;font-weight:600;font-size:1.1rem;
+ border-radius:14px;padding:16px;margin:10px 0 0;border:0;cursor:pointer;font-family:var(--sans)}
+.wa{background:var(--gruen)}.tel{background:var(--blau)}.sms{background:#5b5b66}
+.klein{font-size:.82rem;color:var(--leise);margin-top:22px;text-align:center}
+#status{min-height:1.4em;color:var(--leise);font-size:.9rem}
+</style></head><body>
+<div class="pfote" aria-hidden="true">🐾</div>
+<h1>Hallo! Ich bin Bello.</h1>
+<p>Wenn du mich gefunden hast: Danke! Bitte sag kurz meinem Menschen Bescheid – das geht ganz schnell.</p>
+<div class="hinweis" id="hinweis" hidden></div>
+<button class="knopf wa" id="wa">📍 Standort per WhatsApp schicken</button>
+<a class="knopf tel" id="tel">📞 Roland anrufen</a>
+<button class="knopf sms" id="sms">💬 Standort per SMS schicken</button>
+<div id="status"></div>
+<div class="klein">Finder-Marke von FromDyzamora · dein Standort wird nur verschickt, wenn du auf einen Knopf tippst</div>
+<script>
+const D={"name": "Bello", "tel": "+32 491 00 00 00", "hinweis": "Ich bin taub – bitte langsam von vorne nähern."};
+if(D.hinweis){const h=document.getElementById('hinweis');h.textContent=D.hinweis;h.hidden=false;}
+const nr=D.tel.replace(/[^0-9+]/g,''), wa=nr.replace(/^\+/,'').replace(/^00/,'');
+document.getElementById('tel').href='tel:'+nr;
+const st=document.getElementById('status');
+function mitOrt(fertig){
+ const text=o=>'Hallo! Ich habe '+D.name+' gefunden.'+(o?' Hier ist mein Standort: https://maps.google.com/?q='+o.latitude.toFixed(5)+','+o.longitude.toFixed(5):'');
+ if(!navigator.geolocation){fertig(text(null));return;}
+ st.textContent='Standort wird ermittelt …';
+ navigator.geolocation.getCurrentPosition(p=>{st.textContent='';fertig(text(p.coords));},()=>{st.textContent='Ohne Standort – bitte schreib kurz, wo du bist.';fertig(text(null));},{enableHighAccuracy:true,timeout:9000});
+}
+document.getElementById('wa').onclick=()=>mitOrt(t=>{location.href='https://wa.me/'+wa+'?text='+encodeURIComponent(t);});
+document.getElementById('sms').onclick=()=>mitOrt(t=>{location.href='sms:'+nr+'?&body='+encodeURIComponent(t);});
+</script></body></html>
