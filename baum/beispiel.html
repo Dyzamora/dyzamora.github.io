@@ -1,0 +1,40 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex"><title>Unser Familienbaum</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;600&display=swap">
+<style>
+:root{--grund:#f4ede0;--rinde:#6b4426;--blatt:#4f7a3a;--blatt2:#7aa35a;--text:#3b2a1c;--leise:#8a7660;--display:"Young Serif",Georgia,serif;--sans:"Figtree",system-ui,sans-serif}
+html,body{min-height:100%}body{margin:0;background:var(--grund);color:var(--text);font-family:var(--sans);display:flex;flex-direction:column;align-items:center;
+ padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,6.5vw,2.4rem);margin:22px 0 2px;text-align:center;text-wrap:balance}
+p{color:var(--leise);margin:4px 0 0;text-align:center}
+svg{width:100%;max-width:560px;height:auto;margin-top:6px}
+.ast{fill:none;stroke:var(--rinde);stroke-linecap:round}
+.blatt{fill:var(--blatt);transform-box:fill-box;transform-origin:center;transform:scale(0);animation:auf .7s cubic-bezier(.2,1.4,.4,1) forwards}
+.knospe{fill:none;stroke:var(--blatt2);stroke-dasharray:2 2;opacity:.8}
+.name{font:600 4.4px var(--sans);fill:#fff;text-anchor:middle;dominant-baseline:central;opacity:0;animation:da .4s forwards}
+.kind{font:600 5.6px var(--sans);fill:var(--rinde);text-anchor:middle;opacity:0;animation:da .5s forwards}
+.wurzel{font:400 8px var(--display);fill:var(--text);text-anchor:middle}
+@keyframes auf{to{transform:scale(1)}}@keyframes da{to{opacity:1}}
+.liste{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:center;max-width:520px;margin:10px 0 0;font-size:.95rem}
+.liste b{font-weight:600}.klein{font-size:.8rem;color:var(--leise);margin:22px 0 30px}
+@media (prefers-reduced-motion:reduce){.blatt{animation:none;transform:none}.name,.kind{animation:none;opacity:1}}
+</style></head><body>
+<h1>Unser Familienbaum</h1><p id="zahl"></p>
+<svg id="bild" viewBox="-135 -115 270 230" role="img" aria-label="Familienbaum"></svg>
+<div class="liste" id="liste"></div>
+<div class="klein">Ein Familienbaum, der mitwächst · FromDyzamora</div>
+<script>
+const D={"wurzel": "Oma Hilde & Opa Karl", "aeste": [{"kind": "Anne", "ast": [[0.0, -14.0], [-6.69, -13.05], [-13.36, -12.05], [-20.0, -10.95], [-26.6, -9.7], [-33.14, -8.26], [-39.62, -6.61], [-46.04, -4.75], [-52.4, -2.66], [-58.69, -0.36], [-64.93, 2.12], [-71.13, 4.75], [-77.3, 7.49], [-83.45, 10.27]], "knoten": [-83.45, 10.27]}, {"kind": "Tom", "ast": [[0.0, -14.0], [-1.25, -9.09], [-2.56, -4.22], [-4.02, 0.58], [-5.66, 5.26], [-7.54, 9.8], [-9.7, 14.18], [-12.15, 18.4], [-14.88, 22.45], [-17.89, 26.34], [-21.13, 30.09], [-24.57, 33.73], [-28.15, 37.29], [-31.79, 40.81]], "knoten": [-31.79, 40.81]}, {"kind": "Sarah", "ast": [[0.0, -14.0], [2.43, -9.78], [4.87, -5.55], [7.3, -1.33], [9.74, 2.89], [12.18, 7.11], [14.62, 11.33], [17.07, 15.54], [19.52, 19.76], [21.97, 23.97], [24.42, 28.18], [26.88, 32.39], [29.34, 36.6], [31.79, 40.81]], "knoten": [31.79, 40.81]}, {"kind": "Jens", "ast": [[0.0, -14.0], [6.07, -10.92], [12.15, -7.92], [18.28, -5.05], [24.47, -2.37], [30.72, 0.06], [37.05, 2.22], [43.47, 4.09], [49.98, 5.67], [56.56, 6.97], [63.21, 8.03], [69.93, 8.89], [76.68, 9.62], [83.45, 10.27]], "knoten": [83.45, 10.27]}], "blaetter": [{"name": "Lina", "c": [-84.43, 52.34], "w": 0, "kind": "Anne", "von": [-83.45, 10.27]}, {"name": "Noah", "c": [-108.0, 41.95], "w": 0, "kind": "Anne", "von": [-83.45, 10.27]}, {"name": "Mia", "c": [-6.4, 60.3], "w": 0, "kind": "Tom", "von": [-31.79, 40.81]}, {"name": "Ben", "c": [-19.89, 74.7], "w": 0, "kind": "Tom", "von": [-31.79, 40.81]}, {"name": "Ella", "c": [-50.3, 71.58], "w": 0, "kind": "Tom", "von": [-31.79, 40.81]}, {"name": "Paul", "c": [59.58, 55.89], "w": 0, "kind": "Sarah", "von": [31.79, 40.81]}], "knospen": [{"c": [-106.23, 25.97], "w": 0, "von": [-83.45, 10.27]}, {"c": [-108.0, 10.0], "w": 0, "von": [-83.45, 10.27]}, {"c": [-54.12, 55.7], "w": 0, "von": [-31.79, 40.81]}, {"c": [-65.44, 38.37], "w": 0, "von": [-31.79, 40.81]}, {"c": [49.27, 70.98], "w": 0, "von": [31.79, 40.81]}, {"c": [18.29, 71.6], "w": 0, "von": [31.79, 40.81]}, {"c": [108.0, 22.03], "w": 0, "von": [83.45, 10.27]}, {"c": [107.23, 38.03], "w": 0, "von": [83.45, 10.27]}]}, S=document.getElementById('bild'), ns='http://www.w3.org/2000/svg';
+const el=(n,a,txt)=>{const e=document.createElementNS(ns,n);for(const k in a)e.setAttribute(k,a[k]);if(txt)e.textContent=txt;S.appendChild(e);return e;};
+const P=p=>p[0].toFixed(2)+','+(-p[1]).toFixed(2);
+el('path',{d:'M0,'+(110-34)+' L0,'+(110-96),class:'ast','stroke-width':18});
+D.aeste.forEach(a=>{el('path',{d:'M'+a.ast.map(P).join(' L'),class:'ast','stroke-width':6});});
+[...D.blaetter,...D.knospen].forEach(b=>{el('path',{d:'M'+P(b.von)+' L'+P(b.c),class:'ast','stroke-width':1.6});});
+D.aeste.forEach((a,i)=>{const k=a.knoten,w=a.kind.length*3.4+10;const r=el('rect',{x:k[0]-w/2,y:-k[1]-5.5,width:w,height:11,rx:5.5,fill:'#6b4426'});const t=el('text',{x:k[0],y:-k[1]+0.3,class:'kind'},a.kind);t.style.fill='#fff';t.style.dominantBaseline='central';t.style.animationDelay=(0.3+i*0.15)+'s';});
+D.knospen.forEach(k=>{el('ellipse',{cx:k.c[0],cy:-k.c[1],rx:13,ry:6.5,class:'knospe',transform:`rotate(${-k.w} ${k.c[0]} ${-k.c[1]})`});});
+D.blaetter.forEach((b,i)=>{const g=el('ellipse',{cx:b.c[0],cy:-b.c[1],rx:13,ry:6.5,class:'blatt',transform:`rotate(${-b.w} ${b.c[0]} ${-b.c[1]})`});
+ g.style.animationDelay=(0.8+i*0.18)+'s';const t=el('text',{x:b.c[0],y:-b.c[1],class:'name'},b.name);t.style.animationDelay=(1.1+i*0.18)+'s';});
+el('text',{x:0,y:100,class:'wurzel'},D.wurzel);
+document.getElementById('zahl').textContent=D.blaetter.length+' Enkel'+(D.blaetter.length===1?'kind':'kinder')+' · '+D.aeste.length+' Ä'+(D.aeste.length===1?'st':'ste')+' · noch '+D.knospen.length+' Knospen frei';
+const L=document.getElementById('liste');D.aeste.forEach(a=>{const n=D.blaetter.filter(b=>b.kind===a.kind).map(b=>b.name);const d=document.createElement('div');d.innerHTML='<b></b> ';d.querySelector('b').textContent=a.kind;d.append(n.length?'– '+n.join(', '):'');L.appendChild(d);});
+</script></body></html>
