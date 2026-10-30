@@ -1,0 +1,35 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex"><title>Bello ist zuhause</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;600&display=swap">
+<style>
+:root{--grund:#f4efe6;--text:#2f2a22;--leise:#7d7262;--akzent:#c7652e;--karte:#fffdf9;--display:"Young Serif",Georgia,serif;--sans:"Figtree",system-ui,sans-serif}
+body{margin:0;background:var(--grund);color:var(--text);font-family:var(--sans);display:flex;flex-direction:column;align-items:center;padding:0 16px 28px}
+svg.pfote{width:54px;height:54px;margin-top:26px;fill:var(--akzent);animation:tapp 2.4s infinite}
+@keyframes tapp{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(1.9rem,8vw,2.8rem);margin:6px 0 0;text-align:center}
+.seit{color:var(--leise);margin-top:4px;text-align:center}
+.gross{font:600 clamp(2.6rem,12vw,4rem)/1 var(--sans);font-variant-numeric:tabular-nums;color:var(--akzent);margin-top:22px}
+.unter{color:var(--leise)}
+.raster{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%;max-width:440px;margin-top:22px}
+.k{background:var(--karte);border-radius:14px;padding:14px 10px;text-align:center;box-shadow:0 1px 3px rgba(60,40,20,.08)}
+.k b{display:block;font-size:1.35rem;font-variant-numeric:tabular-nums}.k span{font-size:.82rem;color:var(--leise)}
+.ziel{margin-top:22px;background:#f3dcc9;border-radius:14px;padding:14px 18px;text-align:center;max-width:440px;width:100%;box-sizing:border-box;line-height:1.45}
+.klein{font-size:.78rem;color:var(--leise);margin-top:22px;text-align:center;max-width:380px}
+@media (prefers-reduced-motion:reduce){svg.pfote{animation:none}}
+</style></head><body>
+<svg class="pfote" viewBox="-30 -30 60 60" aria-hidden="true"><ellipse cx="0" cy="8" rx="13" ry="11"/><ellipse cx="-15" cy="-6" rx="5.5" ry="7"/><ellipse cx="-6" cy="-16" rx="5.5" ry="7"/><ellipse cx="6" cy="-16" rx="5.5" ry="7"/><ellipse cx="15" cy="-6" rx="5.5" ry="7"/></svg>
+<h1>Bello ist zuhause</h1><div class="seit">seit dem 12. April 2022</div>
+<div class="gross" id="tage">–</div><div class="unter">Tage als Familie</div>
+<div class="raster" id="raster"></div>
+<div class="ziel" id="ziel"></div>
+<div class="klein">Werte geschätzt nach üblichen Tagesgewohnheiten – die echten waren bestimmt mehr.<br>Zuhause seit · FromDyzamora</div>
+<script>
+const D={"seit": "2022-04-12", "name": "Bello", "gen": "Bellos", "werte": [["Gassirunden", 3, 0], ["Kilometer gelaufen", 4.5, 0], ["Leckerli", 4, 0], ["Nickerchen", 6, 0], ["Stunden geschlafen", 13, 0], ["Bauchkraulen", 10, 0]]}, start=new Date(D.seit+'T00:00:00').getTime(), f=n=>Math.floor(n).toLocaleString('de-DE');
+const R=document.getElementById('raster');D.werte.forEach((w,i)=>{R.insertAdjacentHTML('beforeend','<div class="k"><b id="w'+i+'">–</b><span>'+w[0]+'</span></div>')});
+function tick(){const t=(Date.now()-start)/864e5;document.getElementById('tage').textContent=f(t);D.werte.forEach((w,i)=>document.getElementById('w'+i).textContent=f(t*w[1]))}
+tick();setInterval(tick,60000);
+const t=(Date.now()-start)/864e5, st=t<100?100:(t<1000?(Math.floor(t/100)+1)*100:(Math.floor(t/500)+1)*500), am=new Date(start+st*864e5);
+const jt=new Date(start);let j=new Date(new Date().getFullYear(),jt.getMonth(),jt.getDate());if(j<new Date(new Date().toDateString()))j.setFullYear(j.getFullYear()+1);
+const bis=Math.round((j-new Date(new Date().toDateString()))/864e5), n=j.getFullYear()-jt.getFullYear();
+document.getElementById('ziel').innerHTML=(bis===0?'<b>Heute ist '+D.gen+' '+n+'. Zuhause-Tag! 🎉</b><br>':'Noch <b>'+bis+' Tage</b> bis zu '+D.gen+' '+n+'. Zuhause-Tag.<br>')+'Am <b>'+am.toLocaleDateString('de-DE',{day:'numeric',month:'long',year:'numeric'})+'</b> seid ihr <b>'+st.toLocaleString('de-DE')+' Tage</b> eine Familie.';
+</script></body></html>
