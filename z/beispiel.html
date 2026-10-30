@@ -1,0 +1,41 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex"><title>Unsere Zeit – Lina & Noah</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;600&display=swap">
+<style>
+:root{--grund:#fbf3ee;--text:#3a2423;--leise:#8c6f6a;--rot:#c2414b;--karte:#fff;--display:"Young Serif",Georgia,serif;--sans:"Figtree",system-ui,sans-serif}
+html,body{min-height:100%}body{margin:0;background:var(--grund);color:var(--text);font-family:var(--sans);display:flex;flex-direction:column;align-items:center;padding:0 max(16px,env(safe-area-inset-left,0px)) 28px}
+.herz{font-size:44px;margin-top:26px;color:var(--rot);animation:schlag 1.7s infinite}
+@keyframes schlag{0%,100%{transform:scale(1)}12%{transform:scale(1.15)}24%{transform:scale(1)}36%{transform:scale(1.1)}}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(1.9rem,7.5vw,2.7rem);margin:4px 0 0;text-align:center}
+.seit{color:var(--leise);margin-top:4px}
+.gross{font:600 clamp(2.6rem,12vw,4rem)/1 var(--sans);font-variant-numeric:tabular-nums;color:var(--rot);margin-top:22px}
+.unter{color:var(--leise)}
+.raster{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%;max-width:440px;margin-top:22px}
+.k{background:var(--karte);border-radius:14px;padding:14px 12px;text-align:center;box-shadow:0 1px 3px rgba(60,30,30,.08)}
+.k b{display:block;font-size:1.35rem;font-variant-numeric:tabular-nums}.k span{font-size:.82rem;color:var(--leise)}
+.ziel{margin-top:22px;background:#f6dfe0;border-radius:14px;padding:14px 18px;text-align:center;max-width:440px;width:100%;box-sizing:border-box}
+.klein{font-size:.8rem;color:var(--leise);margin-top:24px}
+@media (prefers-reduced-motion:reduce){.herz{animation:none}}
+</style></head><body>
+<div class="herz" aria-hidden="true">♥</div>
+<h1>Lina & Noah</h1><div class="seit">Zusammen seit 14.06.2019</div>
+<div class="gross" id="tage">–</div><div class="unter">Tage</div>
+<div class="raster">
+<div class="k"><b id="std">–</b><span>Stunden</span></div><div class="k"><b id="sek">–</b><span>Sekunden</span></div>
+<div class="k"><b id="herz">–</b><span>Herzschläge, jeder für sich</span></div><div class="k"><b id="mond">–</b><span>Vollmonde</span></div>
+<div class="k"><b id="sonne">–</b><span>Runden um die Sonne</span></div><div class="k"><b id="we">–</b><span>Wochenenden</span></div>
+</div>
+<div class="ziel" id="ziel"></div>
+<div class="klein">Unsere Zeit · FromDyzamora</div>
+<script>
+const D={"seit": "2019-06-14", "anlass": "zusammen"}, start=new Date(D.seit+'T00:00:00').getTime(), f=n=>Math.floor(n).toLocaleString('de-DE');
+function tick(){const ms=Date.now()-start,t=ms/864e5;
+ document.getElementById('tage').textContent=f(t);document.getElementById('std').textContent=f(ms/36e5);document.getElementById('sek').textContent=f(ms/1e3);
+ document.getElementById('herz').textContent=f(ms/6e4*70);document.getElementById('mond').textContent=f(t/29.530589);
+ document.getElementById('sonne').textContent=(t/365.2422).toLocaleString('de-DE',{maximumFractionDigits:2});document.getElementById('we').textContent=f(t/7);}
+tick();setInterval(tick,1000);
+const t=(Date.now()-start)/864e5, naechst=(Math.floor(t/1000)+1)*1000, am=new Date(start+naechst*864e5);
+const jt=new Date(start);let j=new Date(new Date().getFullYear(),jt.getMonth(),jt.getDate());if(j<new Date())j.setFullYear(j.getFullYear()+1);
+const bis=Math.ceil((j-new Date())/864e5), n=j.getFullYear()-jt.getFullYear();
+document.getElementById('ziel').innerHTML='Am <b>'+am.toLocaleDateString('de-DE',{day:'numeric',month:'long',year:'numeric'})+'</b> seid ihr <b>'+naechst.toLocaleString('de-DE')+' Tage</b> '+D.anlass+'.<br>Noch '+bis+' Tage bis zu eurem '+n+'. Jahrestag.';
+</script></body></html>
