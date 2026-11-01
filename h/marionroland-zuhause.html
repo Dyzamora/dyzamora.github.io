@@ -1,0 +1,26 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex"><title>Unser Zuhause – Marion &amp; Roland</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;600&display=swap">
+<style>
+:root{--grund:#f4efe7;--text:#2f2a24;--leise:#776c60;--akzent:#7a4a2a;--karte:#fff;--display:"Young Serif",Georgia,serif;--sans:"Figtree",system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--grund);color:var(--text);font-family:var(--sans);padding:0 16px 30px;display:flex;justify-content:center}
+main{width:100%;max-width:520px}h1{font-family:var(--display);font-weight:400;font-size:clamp(1.8rem,7vw,2.5rem);text-align:center;margin:26px 0 4px}
+.unter{color:var(--leise);text-align:center;margin-bottom:16px;line-height:1.4}
+.karte{border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(40,30,20,.12);background:#ddd;aspect-ratio:4/3}
+.karte iframe{width:100%;height:100%;border:0;display:block}
+.knopf{display:flex;align-items:center;gap:14px;background:var(--karte);color:var(--text);text-decoration:none;border-radius:14px;padding:14px 16px;margin:10px 0;box-shadow:0 1px 4px rgba(40,30,20,.08)}
+.knopf b{display:block;font-weight:600}.knopf small{color:var(--leise)}.knopf span.i{font-size:1.7rem;width:2rem;text-align:center}
+.seit{background:var(--akzent);color:#fff;border-radius:14px;padding:14px 16px;margin:14px 0;text-align:center}.seit b{font-family:var(--display);font-weight:400;font-size:1.6rem;display:block}
+.klein{font-size:.75rem;color:var(--leise);text-align:center;margin-top:22px}
+</style></head><body><main>
+<h1>Unser Zuhause</h1><div class="unter">Marion &amp; Roland<br>Rue des Censes 29, 4950 Sourbrodt</div>
+<div class="karte"><iframe loading="lazy" title="Satellitenbild" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=50.469107,6.131495&t=k&z=19&output=embed"></iframe></div>
+
+<a class="knopf" href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=50.469107,6.131495"><span class="i">🚶</span><span><b>Street View</b><small>vor unserer Haustür stehen</small></span></a>
+<a class="knopf" href="https://earth.google.com/web/@50.469107,6.131495,564a,350d,35y,0h,55t,0r"><span class="i">🌍</span><span><b>Google Earth in 3D</b><small>einmal um unser Haus fliegen</small></span></a>
+<a class="knopf" href="https://www.google.com/maps/search/?api=1&query=50.469107,6.131495"><span class="i">🧭</span><span><b>Route zu uns</b><small>in Google Maps öffnen</small></span></a>
+<div class="klein">Unser Zuhause von oben · FromDyzamora</div>
+</main>
+<script>
+const S=document.getElementById('seitTage');if(S){const d=(Date.now()-new Date(S.dataset.seit))/864e5;S.textContent=Math.floor(d).toLocaleString('de-DE')+' Tage';}
+</script></body></html>
